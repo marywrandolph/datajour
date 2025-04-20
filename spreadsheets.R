@@ -15,7 +15,7 @@ dashboard_deadzones <- boston_crashes |>
   ) |> 
   filter(!is.na(deadzone_area))
 
-dashboard_deadzones |> 
+deadzone_crash_density <- dashboard_deadzones |> 
   count(deadzone_area)
 
 boston_crashes |>
@@ -35,3 +35,4 @@ crash_density <- boston_crashes |>
 
 boston_crashes |>
   filter(lat > 42.362 & lat < 42.368 & long > -71.165 & long < -71.158)
+
