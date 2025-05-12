@@ -1,6 +1,6 @@
 
 library(curl)
-library(tidyverse)
+library(readr)
 
 # Define API URL
 url <- "https://data.boston.gov/dataset/1e497a44-779b-4e28-a6dd-b7d56de61233/resource/f04a85cf-7d40-49c5-acdb-fdb1626cf911/download/treekeeper_street_trees.csv"
