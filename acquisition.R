@@ -30,3 +30,4 @@ filename <- paste0("data/tree_data.csv")
 write_csv(tree_data, filename)
 
 cat("Data saved to", filename, "\n")
+
