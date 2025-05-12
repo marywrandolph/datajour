@@ -23,7 +23,7 @@ jobs:
 
       - name: Install R packages
         run: |
-          Rscript -e 'install.packages(c("curl", "tidyverse"), repos = "https://cloud.r-project.org")'
+          Rscript -e 'install.packages(c("curl", "readr"), repos = "https://cloud.r-project.org")'
 
       - name: Run R data fetch script
         run: Rscript acquisition.R
