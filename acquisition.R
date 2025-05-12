@@ -1,37 +1,32 @@
-# Load required packages
-install.packages("httr", repos = "https://cloud.r-project.org")
-install.packages("jsonlite", repos = "https://cloud.r-project.org")
 
-library(httr)
-library(jsonlite)
+library(curl)
 library(tidyverse)
 
 # Define API URL
 url <- "https://data.boston.gov/dataset/1e497a44-779b-4e28-a6dd-b7d56de61233/resource/f04a85cf-7d40-49c5-acdb-fdb1626cf911/download/treekeeper_street_trees.csv"
 
-# Make GET request
-response <- GET(url)
+# Create a connection to the API using curl
+con <- curl(url, open = "r")
 
-# Check response status
-if (status_code(response) != 200) {
-  stop("Failed to fetch data. Status code: ", status_code(response))
-}
+# Create a connection to the API using curl and fetch raw data
+h <- new_handle()
+con <- curl(url, handle = h)
 
-data <- content(response, as = "raw")
-csv_text <- rawToChar(data)
-csv_text <- sub("\ufeff", "", csv_text)  # remove BOM if present
+# Read the content into raw data
+raw_data <- readLines(con)
 
-parsed_data <- read_csv(csv_text)
+# Close the connection
+close(con)
 
-# Create data directory if it doesn't exist
-if (!dir.exists("data")) {
-  dir.create("data")
-}
+# Convert raw data to a character vector (clean up the data if needed)
+csv_text <- paste(raw_data, collapse = "\n")
 
-# Timestamped file name
-filename <- paste0("data/trees_new.csv")
+# Parse the CSV content into a data frame
+tree_data <- read_csv(csv_text)
 
-# Save CSV to file
-write(data, file = filename)
+# Save as timestamped CSV
+filename <- paste0("data/tree_data.csv")
 
-cat("Saved data to", filename, "\n")
+write_csv(tree_data, filename)
+
+cat("Data saved to", filename, "\n")
