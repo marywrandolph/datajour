@@ -1,12 +1,12 @@
-name: Fetch CSV Data Daily
+name: Automated Data Acquisition
 
 on:
   schedule:
-    - cron: '0 6 * * *'  # Runs daily at 6:00 UTC
-  workflow_dispatch:       # Allows manual runs
+    - cron: '0 6 * * *'  # Daily at 6:00 UTC
+  workflow_dispatch:       # Manual trigger
 
 jobs:
-  fetch:
+  fetch-and-upload:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,21 +19,17 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libcurl4-openssl-dev
+          sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev
 
       - name: Install R packages
         run: |
           Rscript -e 'install.packages(c("curl", "readr"), repos = "https://cloud.r-project.org")'
 
-      - name: Run R data fetch script
-        run: Rscript acquisition.R
+      - name: Run R script to fetch data
+        run: Rscript scripts/fetch_data.R
 
-      - name: Commit and push new data
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          git add data/
-          git commit -m "Auto-fetch: data from $(date -u)"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload data as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: fetched-data
+          path: data/*.csv
