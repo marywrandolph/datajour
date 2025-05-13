@@ -26,7 +26,7 @@ jobs:
           Rscript -e 'install.packages(c("curl", "readr"), repos = "https://cloud.r-project.org")'
 
       - name: Run R script to fetch data
-        run: Rscript scripts/fetch_data.R
+        run: Rscript data_acquisition.R
 
       - name: Upload data as artifact
         uses: actions/upload-artifact@v4
