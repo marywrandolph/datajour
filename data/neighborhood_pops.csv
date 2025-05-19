@@ -1,24 +1,30 @@
-"","TOTALPOPULATION"
-Allston,"31,514"
-Back Bay,"19,081"
-Beacon Hill,"9,277"
-Brighton,"55,103"
-Charlestown,"19,268"
-Chinatown,"6,337"
-Dorchester,"122,205"
-Downtown,"15,826"
-East Boston,"46,220"
-Fenway,"41,683"
-Hyde Park,"33,239"
-Jamaica Plain,"42,764"
-Longwood,"5,551"
-Mattapan,"24,130"
-Mission Hill,"19,029"
-North End,"10,675"
-Roslindale,"29,256"
-Roxbury,"56,552"
-South Boston,"40,663"
-South Boston Waterfront,"7,910"
-South End,"34,828"
-West End,"9,288"
-West Roxbury,"31,226"
+x1,total_population
+Allston,31514
+Back Bay,19081
+Beacon Hill,9277
+Brighton,55103
+Charlestown,19268
+Chinatown,6337
+Dorchester,122205
+Downtown,15826
+East Boston,46220
+Fenway,41683
+Hyde Park,33239
+Jamaica Plain,42764
+Longwood,5551
+Mattapan,24130
+Mission Hill,19029
+North End,10675
+Roslindale,29256
+Roxbury,56552
+South Boston,40663
+South Boston Waterfront,7910
+South End,34828
+West End,9288
+West Roxbury,31226
+Allston-Brighton,86617
+Back Bay/Beacon Hill,28358
+Fenway/Longwood,47234
+Allston-Brighton,86617
+Back Bay/Beacon Hill,28358
+Fenway/Longwood,47234

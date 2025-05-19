@@ -66,6 +66,8 @@ populations <- read_csv("data/neighborhood_pops.csv") |>
   rbind(data.frame(x1 = "Back Bay/Beacon Hill", total_population = 28358)) |>
   rbind(data.frame(x1 = "Fenway/Longwood", total_population = 47234)) 
 
+write_csv(populations, file = "data/neighborhood_pops.csv")
+
 open_space_data_neighborhoods <- open_space_data |>
   filter(TypeLong != "Cemeteries & Burying Grounds" & TypeLong != "Malls, Squares & Plazas") |>
   group_by(DISTRICT) |>
@@ -74,6 +76,8 @@ open_space_data_neighborhoods <- open_space_data |>
   mutate(green_space_per_100_acres = (total_space/acres)*100) |>
   left_join(populations, by = c("DISTRICT" = "x1")) |>
   mutate(green_space_per_100_people = (total_space/total_population)*100)
+
+write_csv(open_space_data_neighborhoods, file = "data/greenspace.csv")
 
 # Save as CSV
 filename <- paste0("data/open_space_data.csv")
