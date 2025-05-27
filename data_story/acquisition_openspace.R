@@ -19,7 +19,7 @@ raw_data <- readLines(con)
 # Close the connection
 close(con)
 
-# Convert raw data to a character vector
+# Convert raw data to a character
 csv_text <- paste(raw_data, collapse = "\n")
 
 # Parse the CSV content into a data frame
@@ -67,6 +67,8 @@ populations <- read_csv("data/neighborhood_pops.csv") |>
   rbind(data.frame(x1 = "Fenway/Longwood", total_population = 47234)) 
 
 write_csv(populations, file = "data/neighborhood_pops.csv")
+
+#Joining the open space, population and neighborhood data
 
 open_space_data_neighborhoods <- open_space_data |>
   filter(TypeLong != "Cemeteries & Burying Grounds" & TypeLong != "Malls, Squares & Plazas") |>
